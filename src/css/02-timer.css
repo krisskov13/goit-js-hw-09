@@ -1,0 +1,30 @@
+#datetime-picker {
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+      }
+       button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 3px;
+            background: #6E6D70;
+            color: #fbfafb;
+}
+      .timer {
+            display: flex;
+            margin-top: 20px;
+      }
+      .field {
+            margin: 0 10px;
+      }
+      .value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+      .label {
+            font-size: 12px;
+            color: #777;
+        }
