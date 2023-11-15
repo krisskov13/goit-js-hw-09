@@ -13,18 +13,18 @@ let userDate;
 startButton.setAttribute('disabled', true);
 
 const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-        userDate = selectedDates[0];
-        if (userDate > Date.now()) {
-            startButton.disabled = false;
-        } else {
-            Notify.failure('Please choose a date in the future');
-        }
-    },
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    userDate = selectedDates[0];
+    if (userDate > Date.now()) {
+      startButton.disabled = false;
+    } else {
+      Notify.failure('Please choose a date in the future');
+    }
+  },
 };
 
 flatpickr(input, options);
@@ -46,25 +46,27 @@ function convertMs(ms) {
 let timerInterval;
 
 function startTimer() {
-    startButton.setAttribute('disabled', true);
-    timerInterval = setInterval(() => {
-        const currentTime = convertMs(userDate - Date.now());
-        const sumDateSeconds = Object.values(currentTime).reduce((a, b) => a + b, 0);
-        if (sumDateSeconds < 0) {
-            clearInterval(timerInterval);
-            return;
-        }
-    
-        daysValue.textContent = addLeadingZero(currentTime.days);
-        hoursValue.textContent = addLeadingZero(currentTime.hours);
-        minutesValue.textContent = addLeadingZero(currentTime.minutes);
-        secondsValue.textContent = addLeadingZero(currentTime.seconds);
-    }, 1000);
+  startButton.setAttribute('disabled', true);
+  timerInterval = setInterval(() => {
+    const currentTime = convertMs(userDate - Date.now());
+    const sumDateSeconds = Object.values(currentTime).reduce(
+      (a, b) => a + b,
+      0
+    );
+    if (sumDateSeconds < 0) {
+      clearInterval(timerInterval);
+      return;
+    }
+
+    daysValue.textContent = addLeadingZero(currentTime.days);
+    hoursValue.textContent = addLeadingZero(currentTime.hours);
+    minutesValue.textContent = addLeadingZero(currentTime.minutes);
+    secondsValue.textContent = addLeadingZero(currentTime.seconds);
+  }, 1000);
 }
 
-
 function addLeadingZero(value) {
-    return value.toString().padStart(2, '0');
+  return value.toString().padStart(2, '0');
 }
 
 startButton.addEventListener('click', startTimer);
